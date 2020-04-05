@@ -1,36 +1,31 @@
 <%- include('../includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/prods.css">
+    <link rel="stylesheet" href="/css/prod.css">
     </head>
 
     <body>
         <%- include('../includes/navigation.ejs') %>
 
             <main>
-                <% if (prods) { %>
+                <% if (prod) { %>
                     <article class="card product-item">
                         <header class="card__header">
                             <h1 class="product__title">
-                                <%= prods.title %>
+                                <%= prod.title %>
                             </h1>
                         </header>
                         <div class="card__image">
-                            <img src="<%= prods.imageUrl %>" alt="<%= prods.title %>">
+                            <img src="<%= prod.imageUrl %>" alt="<%= prod.title %>">
                         </div>
                         <div class="card__content">
                             <h2 class="product__price">$
-                                <%= prods.price %>
+                                <%= prod.price %>
                             </h2>
                             <p class="product__description">
-                                <%= prods.description %>
+                                <%= prod.description %>
                             </p>
                         </div>
                         <div class="card__actions">
-                            <a href="/products/<%= prods.id %>" class="btn">
-                                Details
-                            </a>
-                            <form action="/add-to-cart" method="POST">
-                                <button class="btn">Add to Cart</button>
-                            </form>
+                            <%- include('../includes/add-to-cart.ejs', { id: prod.id }) %>
                         </div>
                     </article>
                 <% } else { %>
