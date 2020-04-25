@@ -2,7 +2,7 @@ const Product = require("../models/product");
 const Cart = require("../models/cart");
 
 exports.getProducts = (req, res, next) => {
-    Product.findAll()
+    req.user.getProducts()
         .then((prods) => {
             res.render("shop/product-list", {
                 prods,
@@ -26,16 +26,15 @@ exports.getProduct = (req, res, next) => {
     */
     Product.findByPk(prodId)
         .then( prod => {
-            console.log({ prod });
             res.render("shop/product-detail", {
             prod,
             pageTitle: prod ? `Product ${prod.title}` : "Not found",
             path: "/products",
             });
         })
-    .catch((err) => {
-        console.log(`shop.getProduct() err: ${err}`);
-    });
+        .catch((err) => {
+            console.log(`shop.getProduct() err: ${err}`);
+        });
 };
 
 exports.getIndex = (req, res, next) => {

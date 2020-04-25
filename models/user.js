@@ -2,29 +2,21 @@ const Sequalize = require("sequelize");
 
 const sequelize = require("../util/database");
 
-const Product = sequelize.define("product", {
+const User = sequelize.define("user", {
     id: {
         type: Sequalize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true,
     },
-    title: {
+    name: {
         type: Sequalize.STRING,
         allowNull: false,
     },
-    price: {
-        type: Sequalize.INTEGER,
-        allowNull: false,
-    },
-    imageUrl: {
+    email: {
         type: Sequalize.STRING,
         allowNull: false,
-    },
-    description: {
-        type: Sequalize.STRING,
-        allowNull: false,
-    },
+    },   
 });
 
-module.exports = Product;
+module.exports = User;
